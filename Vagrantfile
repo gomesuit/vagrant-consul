@@ -27,6 +27,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     host.vm.network "private_network", ip: "192.168.33.13"
     host.vm.provision :shell, path: "install-docker.sh"
     host.vm.provision :shell, path: "run-consul-client.sh", args: "node03 192.168.33.13 192.168.33.11"
+    host.vm.provision :shell, path: "install-apache.sh"
   end
 
   config.vm.define :node04 do |host|
@@ -34,6 +35,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     host.vm.network "private_network", ip: "192.168.33.14"
     host.vm.provision :shell, path: "install-docker.sh"
     host.vm.provision :shell, path: "run-consul-client.sh", args: "node04 192.168.33.14 192.168.33.11"
+    host.vm.provision :shell, path: "install-apache.sh"
   end
 
 end
