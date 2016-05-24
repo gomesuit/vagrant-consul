@@ -27,5 +27,5 @@ EOF
 	-dc=local \
 	-bind=$BIND_ADDRESS \
 	-join=$JOIN \
-	-bootstrap-expect=2
+	-bootstrap-expect=2 \
 	 > /dev/null 2>&1 &
