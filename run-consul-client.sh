@@ -8,8 +8,7 @@ echo $NODENAME
 echo $BIND_ADDRESS
 echo $JOIN
 
-
-mkdir -p ~/consul.d
+mkdir -p /root/consul.d
 
 cat <<EOF > /root/consul.d/web.json
 {
@@ -25,7 +24,17 @@ cat <<EOF > /root/consul.d/web.json
 }
 EOF
 
+cat <<EOF > /root/consul.d/agent.json
+{
+	"ports": {
+		"dns": 53
+	},
+	"recursor": "8.8.8.8"
+}
+EOF
+
 /usr/local/bin/consul agent \
+	-config-dir=/root/consul.d \
 	-data-dir=/tmp/consul \
 	-node=$NODENAME \
 	-dc=local \
