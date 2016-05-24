@@ -10,11 +10,8 @@ echo $JOIN
 
 #/usr/local/bin/consul agent -server -dc=local -bootstrap-expect=2 -data-dir=/tmp/consul -node=$NODENAME -bind=$BIND_ADDRESS > /dev/null 2>&1
 
-docker run -d \
-	--name=consul \
-	--net=host \
-	-e 'CONSUL_LOCAL_CONFIG={"skip_leave_on_interrupt": true}' \
-	consul agent \
+consul agent \
+	-node=$NODENAME
 	-server \
 	-dc=local \
 	-bind=$BIND_ADDRESS \
