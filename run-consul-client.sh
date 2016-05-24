@@ -25,10 +25,10 @@ cat <<EOF > /root/consul.d/web.json
 }
 EOF
 
-consul agent \
-	-node=$NODENAME
-	-v /root/consul.d:/consul/config
+/usr/local/bin/consul agent \
+	-data-dir=/tmp/consul \
+	-node=$NODENAME \
 	-dc=local \
 	-bind=$BIND_ADDRESS \
-	-join=$JOIN
-
+	-join=$JOIN \
+	 > /dev/null 2>&1 &

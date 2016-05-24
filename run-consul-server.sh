@@ -10,10 +10,12 @@ echo $JOIN
 
 #/usr/local/bin/consul agent -server -dc=local -bootstrap-expect=2 -data-dir=/tmp/consul -node=$NODENAME -bind=$BIND_ADDRESS > /dev/null 2>&1
 
-consul agent \
-	-node=$NODENAME
+/usr/local/bin/consul agent \
+	-data-dir=/tmp/consul \
+	-node=$NODENAME \
 	-server \
 	-dc=local \
 	-bind=$BIND_ADDRESS \
 	-join=$JOIN \
-	-bootstrap-expect=2
+	-bootstrap-expect=2 \
+	 > /dev/null 2>&1 &
