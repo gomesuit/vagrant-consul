@@ -14,11 +14,12 @@ cat <<EOF > /root/consul.d/web.json
 {
 	"service": {
 		"name": "web",
-		"tags": ["rails"],
+		"tags": ["nginx"],
 		"port": 80,
 		"check": {
-			"script": "curl localhost:80 > /dev/null 2>&1",
-			"interval": "10s"
+			"script": ""curl http://127.0.0.1:80/consul.html >/dev/null 2>&1",
+			"interval": "10s",
+			"timeout": "5s"
 		}
 	}
 }
