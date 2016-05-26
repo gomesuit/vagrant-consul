@@ -42,10 +42,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     host.vm.hostname = HOSTNAME
     host.vm.network "private_network", ip: PRIVATE_IP_ADDRESS
+    host.vm.provision :shell, path: "install-nginx.sh", args: HOSTNAME
     host.vm.provision :shell, path: "install-consul.sh"
     host.vm.provision :shell, path: "run-consul-client.sh", args: CONSUL_ARGS
     host.vm.provision :shell, path: "set-dns.sh"
-    host.vm.provision :shell, path: "install-nginx.sh", args: HOSTNAME
   end
 
   config.vm.define :node04 do |host|
@@ -56,10 +56,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     host.vm.hostname = HOSTNAME
     host.vm.network "private_network", ip: PRIVATE_IP_ADDRESS
+    host.vm.provision :shell, path: "install-nginx.sh", args: HOSTNAME
     host.vm.provision :shell, path: "install-consul.sh"
     host.vm.provision :shell, path: "run-consul-client.sh", args: CONSUL_ARGS
     host.vm.provision :shell, path: "set-dns.sh"
-    host.vm.provision :shell, path: "install-nginx.sh", args: HOSTNAME
   end
 
 end

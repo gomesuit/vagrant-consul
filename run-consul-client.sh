@@ -17,7 +17,7 @@ cat <<EOF > /root/consul.d/web.json
 		"tags": ["nginx"],
 		"port": 80,
 		"check": {
-			"script": ""curl http://127.0.0.1:80/consul.html >/dev/null 2>&1",
+			"script": "curl http://127.0.0.1:80/consul.html >/dev/null 2>&1",
 			"interval": "10s",
 			"timeout": "5s"
 		}
