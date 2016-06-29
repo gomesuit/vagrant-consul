@@ -8,57 +8,55 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "centos/7"
 
-  config.vm.define :node01 do |host|
-    HOSTNAME = "node01"
-    PRIVATE_IP_ADDRESS = "192.168.33.11"
-    CONSUL_JOIN_ADDRESS = "192.168.33.11"
-    CONSUL_ARGS = HOSTNAME + " " + PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
+  CONSUL_JOIN_ADDRESS = "192.168.33.11"
 
-    host.vm.hostname = HOSTNAME
-    host.vm.network "private_network", ip: PRIVATE_IP_ADDRESS
+  config.vm.define :node01 do |host|
+    _HOSTNAME = "node01"
+    _PRIVATE_IP_ADDRESS = CONSUL_JOIN_ADDRESS
+    _CONSUL_ARGS = _HOSTNAME + " " + _PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
+
+    host.vm.hostname = _HOSTNAME
+    host.vm.network "private_network", ip: _PRIVATE_IP_ADDRESS
     host.vm.provision :shell, path: "install-consul.sh"
-    host.vm.provision :shell, path: "run-consul-server.sh", args: CONSUL_ARGS
+    host.vm.provision :shell, path: "run-consul-server.sh", args: _CONSUL_ARGS
     host.vm.provision :shell, path: "set-dns.sh"
   end
 
   config.vm.define :node02 do |host|
-    HOSTNAME = "node02"
-    PRIVATE_IP_ADDRESS = "192.168.33.12"
-    CONSUL_JOIN_ADDRESS = "192.168.33.11"
-    CONSUL_ARGS = HOSTNAME + " " + PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
+    _HOSTNAME = "node02"
+    _PRIVATE_IP_ADDRESS = "192.168.33.12"
+    _CONSUL_ARGS = _HOSTNAME + " " + _PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
 
-    host.vm.hostname = HOSTNAME
-    host.vm.network "private_network", ip: PRIVATE_IP_ADDRESS
+    host.vm.hostname = _HOSTNAME
+    host.vm.network "private_network", ip: _PRIVATE_IP_ADDRESS
     host.vm.provision :shell, path: "install-consul.sh"
-    host.vm.provision :shell, path: "run-consul-server.sh", args: CONSUL_ARGS
+    host.vm.provision :shell, path: "run-consul-server.sh", args: _CONSUL_ARGS
     host.vm.provision :shell, path: "set-dns.sh"
   end
 
   config.vm.define :node03 do |host|
-    HOSTNAME = "node03"
-    PRIVATE_IP_ADDRESS = "192.168.33.13"
-    CONSUL_JOIN_ADDRESS = "192.168.33.11"
-    CONSUL_ARGS = HOSTNAME + " " + PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
+    _HOSTNAME = "node03"
+    _PRIVATE_IP_ADDRESS = "192.168.33.13"
+    _CONSUL_ARGS = _HOSTNAME + " " + _PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
 
-    host.vm.hostname = HOSTNAME
-    host.vm.network "private_network", ip: PRIVATE_IP_ADDRESS
-    host.vm.provision :shell, path: "install-nginx.sh", args: HOSTNAME
+    host.vm.hostname = _HOSTNAME
+    host.vm.network "private_network", ip: _PRIVATE_IP_ADDRESS
+    host.vm.provision :shell, path: "install-nginx.sh", args: _HOSTNAME
     host.vm.provision :shell, path: "install-consul.sh"
-    host.vm.provision :shell, path: "run-consul-client.sh", args: CONSUL_ARGS
+    host.vm.provision :shell, path: "run-consul-client.sh", args: _CONSUL_ARGS
     host.vm.provision :shell, path: "set-dns.sh"
   end
 
   config.vm.define :node04 do |host|
-    HOSTNAME = "node04"
-    PRIVATE_IP_ADDRESS = "192.168.33.14"
-    CONSUL_JOIN_ADDRESS = "192.168.33.11"
-    CONSUL_ARGS = HOSTNAME + " " + PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
+    _HOSTNAME = "node04"
+    _PRIVATE_IP_ADDRESS = "192.168.33.14"
+    _CONSUL_ARGS = _HOSTNAME + " " + _PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
 
-    host.vm.hostname = HOSTNAME
-    host.vm.network "private_network", ip: PRIVATE_IP_ADDRESS
-    host.vm.provision :shell, path: "install-nginx.sh", args: HOSTNAME
+    host.vm.hostname = _HOSTNAME
+    host.vm.network "private_network", ip: _PRIVATE_IP_ADDRESS
+    host.vm.provision :shell, path: "install-nginx.sh", args: _HOSTNAME
     host.vm.provision :shell, path: "install-consul.sh"
-    host.vm.provision :shell, path: "run-consul-client.sh", args: CONSUL_ARGS
+    host.vm.provision :shell, path: "run-consul-client.sh", args: _CONSUL_ARGS
     host.vm.provision :shell, path: "set-dns.sh"
   end
 
