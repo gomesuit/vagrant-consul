@@ -20,12 +20,12 @@ consul exec hostname
 
 ## WEBサーバ動作確認
 ```
-curl http://node03/consul.html
-curl http://node04/consul.html
+curl http://node01/consul.html
+curl http://node02/consul.html
 curl http://web.service.consul/consul.html
-consul exec -node="node03" systemctl stop nginx
+consul exec -node="node01" systemctl stop nginx
 curl http://web.service.consul/consul.html
-consul exec -node="node03" systemctl start nginx
-consul exec -node="node04" systemctl stop nginx
+consul exec -node="node01" systemctl start nginx
+consul exec -node="node02" systemctl stop nginx
 curl http://web.service.consul/consul.html
 ```

@@ -34,8 +34,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     host.vm.provision :shell, path: "set-dns.sh"
   end
 
-  config.vm.define :node03 do |host|
-    _HOSTNAME = "node03"
+  config.vm.define :node01 do |host|
+    _HOSTNAME = "node01"
     _PRIVATE_IP_ADDRESS = "192.168.33.30"
     _CONSUL_ARGS = _HOSTNAME + " " + _PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
 
@@ -47,8 +47,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     host.vm.provision :shell, path: "set-dns.sh"
   end
 
-  config.vm.define :node04 do |host|
-    _HOSTNAME = "node04"
+  config.vm.define :node02 do |host|
+    _HOSTNAME = "node02"
     _PRIVATE_IP_ADDRESS = "192.168.33.40"
     _CONSUL_ARGS = _HOSTNAME + " " + _PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
 
