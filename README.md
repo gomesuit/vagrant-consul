@@ -16,3 +16,9 @@ ping node02 -c 3
 ```
 consul exec hostname
 ```
+
+## WEBサーバ動作確認
+```
+curl node03
+curl node04
+```
