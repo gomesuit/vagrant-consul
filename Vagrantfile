@@ -8,10 +8,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.box = "centos/7"
 
-  CONSUL_JOIN_ADDRESS = "192.168.33.11"
+  CONSUL_JOIN_ADDRESS = "192.168.33.10"
 
-  config.vm.define :node01 do |host|
-    _HOSTNAME = "node01"
+  config.vm.define :server01 do |host|
+    _HOSTNAME = "server01"
     _PRIVATE_IP_ADDRESS = CONSUL_JOIN_ADDRESS
     _CONSUL_ARGS = _HOSTNAME + " " + _PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
 
@@ -22,9 +22,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     host.vm.provision :shell, path: "set-dns.sh"
   end
 
-  config.vm.define :node02 do |host|
-    _HOSTNAME = "node02"
-    _PRIVATE_IP_ADDRESS = "192.168.33.12"
+  config.vm.define :server02 do |host|
+    _HOSTNAME = "server02"
+    _PRIVATE_IP_ADDRESS = "192.168.33.20"
     _CONSUL_ARGS = _HOSTNAME + " " + _PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
 
     host.vm.hostname = _HOSTNAME
@@ -36,7 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :node03 do |host|
     _HOSTNAME = "node03"
-    _PRIVATE_IP_ADDRESS = "192.168.33.13"
+    _PRIVATE_IP_ADDRESS = "192.168.33.30"
     _CONSUL_ARGS = _HOSTNAME + " " + _PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
 
     host.vm.hostname = _HOSTNAME
@@ -49,7 +49,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   config.vm.define :node04 do |host|
     _HOSTNAME = "node04"
-    _PRIVATE_IP_ADDRESS = "192.168.33.14"
+    _PRIVATE_IP_ADDRESS = "192.168.33.40"
     _CONSUL_ARGS = _HOSTNAME + " " + _PRIVATE_IP_ADDRESS + " " + CONSUL_JOIN_ADDRESS
 
     host.vm.hostname = _HOSTNAME
